@@ -1,4 +1,4 @@
-# Paredit - Deftness with Parentheses
+# Paredit - Parenthetical Deftness
 
 ## Intro
 
@@ -22,10 +22,16 @@ other editors provide. But we're just getting started.
     Move to right before (+, C-k
 
 The next thing you'll notice is that deleting works differently. When
-you press C-k to kill a line, the whole line doesn't get
+you press C-k to kill a line, the whole line doesn't always get
 deleted. Paredit is doing its best to make sure that the structure of
 your code remains valid. It knows you probably didn't want to actually
 kill the whole line, just everything up to the closing paren.
+
+    [example]
+
+If the rest of the line contains an expression that spans many lines,
+it will remove the whole thing instead of just up to the end of the
+line.
 
     Press backspace to delete x and y.
 
@@ -58,8 +64,9 @@ structure there.
 
 ## Workarounds
 
-Now these features are helpful, but they're not perfect. Let's see
-what happens when the rules are violated.
+Now these features are helpful, but they assume that the file you're
+working with has a valid structure. Let's see what happens when the
+rules are violated.
 
     Open file invalid.el
 
@@ -70,22 +77,55 @@ unbalanced characters. So let's fix it and activate paredit manually.
     M-x paredit
 
 You can still get a document in a bad state if you don't watch
-out. Killing a region with C-w does not enforce the rules.
+out. Killing a region with C-w does not enforce the rules, so remember
+that when you use it, you're stepping outside the bounds of paredit
+and should take care.
 
     Mark (message and C-w it
     C-e
 
-See how the end of the line is highlighted differently? That's an
-indicator that things are unbalanced.
+See how the end of the line is highlighted differently? That's
+show-paren-mode indicating that things are unbalanced. It's not part
+of paredit, but it's definitely worth enabling.
 
-One thing that's helpful to remember is that Emacs lets you prefix a
-letter with C-q to insert it literally rather than activating whatever
-that key is bound to. Use this if you need to insert a paren or two to
-fix your code.
+Another thing that's helpful to remember is that Emacs lets you prefix
+a key with C-q to insert it literally rather than activating whatever
+the key is bound to. Use this if you need to insert a paren to fix
+things. You can also prefix backspace with C-u to force it.
 
 ## Navigation
 
+    TODO: example
+
+You can jump forward and backward by a single expression with C-M-f
+and C-M-b. Note that this is depth-sensitive. For instance, if the
+next expression is just an identifier, it will jump over it, but if
+it's a list, then it will jump over the whole list.
+
+If you're at the end of a list, going forward will leave it.
+
 ## Wrangling (depth-changing)
+
+    TODO: example
+
+You can wrap the next expression in parens with M-(. If you want to
+wrap multiple expressions, simply mark them and then hit (.
+
+    TODO: example
+
+If you're inside a list and want to merge it with its parent, use M-s.
+
+    TODO: example
+
+Of course we can't neglect to mention the imaginatively named "barf"
+and "slurp" commands.
+
+## Splitting and Joining
+
+    TODO: example
+
+This is pretty straightforward; just use M-S-s and M-S-j to split and
+join expressions.
 
 ## Other Languages
 
