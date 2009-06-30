@@ -106,13 +106,24 @@ for a copy. ELPA can be downloaded from http://tromey.com/elpa.
 You'll still need to choose which modes to enable it for though. Add
 hooks for that:
 
-  (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
-  (add-hook 'scheme-mode-hook     'enable-paredit-mode)
-  (add-hook 'clojure-mode-hook    'enable-paredit-mode)
-  (add-hook 'ruby-mode-hook       'enable-paredit-mode)
+    (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
+    (add-hook 'scheme-mode-hook     'enable-paredit-mode)
+    (add-hook 'clojure-mode-hook    'enable-paredit-mode)
+    (add-hook 'ruby-mode-hook       'esk-paredit-nonlisp)
 
 Add a hook for each mode for which you want paredit activated, and
 you're good to go.
+
+The esk-paredit-nonlisp function customizes and enables paredit for
+non-Lisp languages. It's included in the Starter Kit, but if you want
+to use it elsewhere, it's here:
+
+TODO: This only works with my patched paredit! Get it upstream.
+
+    (defun esk-paredit-nonlisp ()
+      "Turn on paredit mode for non-lisps."
+      (set (make-local-variable paredit-space-delimiter-chars) (list ?\"))
+      (paredit-mode +1))
 
 If you're interested in learning more about Emacs or Lisp, check out
 my PeepCode screencasts, each available for $9:
