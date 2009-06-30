@@ -9,17 +9,17 @@ further, which is what we'll explore here.
 
 ## Insertion and Deletion
 
-Let's write some Emacs Lisp. Switching to the \*scratch\* buffer gives
-us a sandbox in which to play around.
+Let's write some Emacs Lisp.
 
+    Switch to \*scratch\* buffer
     M-x paredit-mode
-    (defun plus (x y) (+ x y))
+    [TODO: example]
 
 Now you'll notice that as you type open parens, the closing ones are
 inserted for you. This is no real surprise, as it's something many
 other editors provide. But we're just getting started.
 
-    Move to right before (+, C-k
+    [TODO: example]
 
 The next thing you'll notice is that deleting works differently. When
 you press C-k to kill a line, the whole line doesn't always get
@@ -27,23 +27,23 @@ deleted. Paredit is doing its best to make sure that the structure of
 your code remains valid. It knows you probably didn't want to actually
 kill the whole line, just everything up to the closing paren.
 
-    [example]
+    [TODO: example]
 
 If the rest of the line contains an expression that spans many lines,
 it will remove the whole thing instead of just up to the end of the
 line.
 
-    Press backspace to delete x and y.
+    [TODO: example]
 
 Similarly, pressing backspace will pass through the parens and only
 delete x and y.
 
-    Press backspace again to get rid of the paren.
+    [TODO: example]
 
 But once a pair of parens is empty, then deleting one of them deletes
 the other.
 
-    M-b to the front of plus, hit M-(
+    M-b to the front of sexp, hit M-(
 
 Meta-paren will wrap the expression at point in parentheses.
 
@@ -129,6 +129,8 @@ join expressions.
 
 ## Other Languages
 
+    [TODO: example]
+
 While paredit-mode was designed to work with Lisp languages, it can be
 used in others as well. In Ruby it works pretty well, although it does
 not consider do/end to be matching elements. For Javascript and other
@@ -141,7 +143,7 @@ If you use the Emacs Starter Kit, you've got Paredit already
 installed. Otherwise hit up the Emacs Lisp Package Archive, or ELPA
 for a copy. ELPA can be downloaded from http://tromey.com/elpa.
 
-[Show installation]
+    [Show installation]
 
 You'll still need to choose which modes to enable it for though. Add
 hooks for that:
@@ -158,15 +160,19 @@ The esk-paredit-nonlisp function customizes and enables paredit for
 non-Lisp languages. It's included in the Starter Kit, but if you want
 to use it elsewhere, it's here:
 
-TODO: This only works with my patched paredit! Get it upstream.
+    [TODO: This only works with my patched paredit! Get it upstream.]
 
     (defun esk-paredit-nonlisp ()
       "Turn on paredit mode for non-lisps."
       (set (make-local-variable paredit-space-delimiter-chars) (list ?\"))
       (paredit-mode +1))
 
+## Conclusion
+
 If you're interested in learning more about Emacs or Lisp, check out
 my PeepCode screencasts, each available for $9:
+
+    [Show each URL.]
 
 Meet Emacs - http://peepcode.com/products/meet-emacs
 Functional Programming with Clojure - http://peepcode.com/products/functional-programming-with-clojure
