@@ -1,10 +1,10 @@
-# Paredit - Parenthetical Deftness
+# paredit (parenthetical deftness)
 
 ## Intro
 
 Some languages, most famously Lisp, require heavy use of
 parentheses. A good editor will provide a few tools to help you with
-this. A great editor (such as Emacs with Paredit installed) will go
+this. A great editor (such as Emacs with paredit installed) will go
 further, which is what we'll explore here.
 
 ## Insertion and Deletion
