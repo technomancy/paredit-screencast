@@ -11,15 +11,17 @@ further, which is what we'll explore here.
 
 Let's write some Emacs Lisp.
 
-    Switch to \*scratch\* buffer
+    C-x C-f init.el
     M-x paredit-mode
-    [TODO: example]
+    down to line 2
+    insert: (setq paredit-awesome-p t)
 
 Now you'll notice that as you type open parens, the closing ones are
 inserted for you. This is no real surprise, as it's something many
 other editors provide. But we're just getting started.
 
-    [TODO: example]
+    point to right after paredit-
+    C-k
 
 The next thing you'll notice is that deleting works differently. When
 you press C-k to kill a line, the whole line doesn't always get
@@ -27,32 +29,39 @@ deleted. Paredit is doing its best to make sure that the structure of
 your code remains valid. It knows you probably didn't want to actually
 kill the whole line, just everything up to the closing paren.
 
-    [TODO: example]
+    insert: numbers (list 1 (+ 2 \n 3 4))
+    point to before (+
+    C-k
 
 If the rest of the line contains an expression that spans many lines,
 it will remove the whole thing instead of just up to the end of the
 line.
 
-    [TODO: example]
+    C-e
+    backspace through 1 and list
 
-Similarly, pressing backspace will pass through the parens and only
-delete x and y.
+Pressing backspace will pass through the parens and only delete elements.
 
-    [TODO: example]
+    backspace again
 
 But once a pair of parens is empty, then deleting one of them deletes
 the other.
 
+    M-b
     Press )
 
 And pressing close paren won't insert one, but just jumps to the close
 of the current expression instead.
 
-    Press SPC, "
+    C-b
+    insert: [1 2 3]
 
 So far everything that works with parentheses also applies to other
 matched characters. Double-quotes, square brackets, and curly braces
 (if your language uses them) all behave similarly.
+
+    C-e
+    insert "hey look: [unmatched)!"
 
 Of course, paredit knows that these rules don't apply when you're
 inside a string or a comment, so it doesn't try to enforce its
