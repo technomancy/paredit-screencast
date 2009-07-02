@@ -101,24 +101,38 @@ fix things. You can also prefix backspace with C-u to force it.
 
 ## 4. Wrangling (depth-changing)
 
-    TODO: example
+    open rooms.clj
+    point at right before mire.rooms
+    M-(
+    Mark "declare rooms"
+    Press (
 
 You can wrap the next expression in parens with M-(. If you want to
 wrap multiple expressions, simply mark them and then hit (.
 
-    TODO: example
+    Back to mire.rooms
+    M-s
 
 If you're inside a list and want to merge it with its parent, use M-s
 to splice.
 
-    TODO: example
+    Back to "declare rooms"; point in rooms
+    C-S-]
+    C-S-0
 
 Of course we can't neglect to mention the imaginatively named "barf"
-and "slurp" commands.
+and "slurp" commands. If you're inside a list, you can "barf" the last
+expression out of the list. The reverse operation "slurps" the next
+element outside into the list. Yum!
 
-    TODO: finish
+    C-S-[
+    C-S-9
 
-    TODO: example
+Barfing and slurping have forward and backward variations.
+
+    Point to front of rooms
+    M-S-s
+    M-S-j
 
 This is pretty straightforward; just use M-S-s and M-S-j to split and
 join lists.
@@ -128,10 +142,12 @@ join lists.
     [TODO: example]
 
 While paredit-mode was designed to work with Lisp languages, it can be
-used in others as well. In Ruby it works pretty well, although it does
-not consider do/end to be matching elements, and it only matches
-double-quotes. For Javascript and other languages based on cc-mode,
-there are a few hiccups, but it can be made to work.
+used in others as well. It works with most modes based on cc-mode
+(including espresso-mode for Javascript), but there are problems with
+js2-mode. It also works in ruby-mode. The list modification commands
+don't expect list elements to need commas between them, so this causes
+some problems. Other than that, the functionality it provides is quite
+helpful.
 
 ## 6. Installation and Enabling
 
@@ -148,6 +164,7 @@ hooks for that:
     (add-hook 'scheme-mode-hook     'enable-paredit-mode)
     (add-hook 'clojure-mode-hook    'enable-paredit-mode)
     (add-hook 'ruby-mode-hook       'esk-paredit-nonlisp)
+    (add-hook 'espresso-mode-hook   'esk-paredit-nonlisp)
 
 Add a hook for each mode for which you want paredit activated, and
 you're good to go.
