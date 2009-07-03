@@ -2,8 +2,11 @@
 
 
 
-(load "/home/phil/src/elisp/paredit/paredit-beta")
-(load "/home/phil/src/elisp/starter-kit/elpa-to-submit/clojure-mode")
+(setq start-dir (file-name-directory
+		 (or (buffer-file-name) load-file-name)))
+
+(dolist (m '("paredit" "clojure-mode" "espresso"))
+  (load (concat start-dir m)))
 
 (fringe-mode 0)
 (set-default-font "-unknown-Inconsolata-normal-normal-normal-*-19-*-*-*-m-0-*-*")
@@ -14,9 +17,6 @@
 (tooltip-mode -1)
 (tool-bar-mode -1)
 (blink-cursor-mode -1)
-
-(setq start-dir (file-name-directory
-		 (or (buffer-file-name) load-file-name)))
 
 (global-set-key (kbd "C-M-h") 'backward-kill-word)
 
@@ -33,3 +33,15 @@
   (dotimes (n 70)
     (set-face-foreground 'paren-face (concat "grey" (number-to-string (- 80 n))))
     (sit-for 0.01)))
+
+;; modes
+
+(add-to-list 'auto-mode-alist '("\\.js$" . espresso-mode))
+
+(defun esk-paredit-nonlisp ()
+  "Turn on paredit mode for non-lisps."
+  (interactive)
+  (set (make-local-variable 'paredit-space-delimiter-chars) (list ?\"))
+  (paredit-mode +1))
+
+(add-hook 'clojure-mode-hook 'enable-paredit-mode)
