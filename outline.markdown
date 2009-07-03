@@ -139,14 +139,19 @@ join lists.
 
 ## 5. Other Languages
 
-    [TODO: example]
+    Open concourse.js
+    M-x paredit-mode
+    [1, 2, 3].map()
+    Point over 2
+    C-k
+    insert: 4
 
 While paredit-mode was designed to work with Lisp languages, it can be
 used in others as well. It works with most modes based on cc-mode
 (including espresso-mode for Javascript), but there are problems with
 js2-mode. It also works in ruby-mode. The list modification commands
-don't expect list elements to need commas between them, so this causes
-some problems. Other than that, the functionality it provides is quite
+don't expect list elements to need commas between them, so this is not
+ideal. Other than that, the functionality it provides is quite
 helpful.
 
 ## 6. Installation and Enabling
@@ -173,7 +178,8 @@ The esk-paredit-nonlisp function customizes and enables paredit for
 non-Lisp languages. It's included in the Starter Kit, but if you want
 to use it elsewhere, it looks like this:
 
-    [TODO: This only works with my patched paredit! Get it upstream.]
+    [TODO: This only works with my patched paredit! Get it upstream or
+           rework this section.]
 
     (defun esk-paredit-nonlisp ()
       "Turn on paredit mode for non-lisps."
